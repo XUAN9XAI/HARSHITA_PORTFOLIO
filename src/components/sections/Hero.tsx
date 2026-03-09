@@ -1,22 +1,21 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Briefcase, Mail } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import harshitaImg from "@/assets/harshita.jpeg";
+import NeuralCircuitBackground from "@/components/NeuralCircuitBackground";
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   const handleScroll = (href: string) => {
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden section-padding pt-32">
-      {/* Background grid */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
-        backgroundSize: '60px 60px',
-      }} />
+      <NeuralCircuitBackground />
 
-      <div className="relative mx-auto flex w-full max-w-6xl flex-col-reverse items-center gap-12 lg:flex-row lg:gap-20">
-        {/* Left content */}
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col-reverse items-center gap-12 lg:flex-row lg:gap-20">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -29,7 +28,7 @@ const Hero = () => {
             transition={{ delay: 0.2 }}
             className="mb-4 inline-block rounded-full border border-border bg-secondary px-4 py-1.5"
           >
-            <span className="font-mono text-xs text-muted-foreground">ECE Undergrad • Full-Stack Developer</span>
+            <span className="font-mono text-xs text-muted-foreground">{t("hero.badge")}</span>
           </motion.div>
 
           <motion.h1
@@ -38,7 +37,7 @@ const Hero = () => {
             transition={{ delay: 0.3 }}
             className="mb-6 text-5xl font-bold tracking-tight md:text-7xl"
           >
-            <span className="gradient-text">Harshita</span>
+            <span className="gradient-text">{t("hero.name")}</span>
           </motion.h1>
 
           <motion.p
@@ -47,7 +46,7 @@ const Hero = () => {
             transition={{ delay: 0.4 }}
             className="mb-4 text-lg text-muted-foreground md:text-xl"
           >
-            Sophomore at AOT
+            {t("hero.subtitle")}
           </motion.p>
 
           <motion.p
@@ -56,7 +55,7 @@ const Hero = () => {
             transition={{ delay: 0.5 }}
             className="mb-10 max-w-lg text-base text-muted-foreground/80 lg:mx-0 mx-auto"
           >
-            Bridging complex hardware with modern intelligent systems.
+            {t("hero.desc")}
           </motion.p>
 
           <motion.div
@@ -70,19 +69,18 @@ const Hero = () => {
               className="group flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all hover:shadow-lg hover:shadow-primary/20"
             >
               <Briefcase size={16} />
-              View Projects
+              {t("hero.viewProjects")}
             </button>
             <button
               onClick={() => handleScroll("#contact")}
               className="flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-all hover:bg-secondary"
             >
               <Mail size={16} />
-              Contact Me
+              {t("hero.contactMe")}
             </button>
           </motion.div>
         </motion.div>
 
-        {/* Right portrait */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -97,13 +95,11 @@ const Hero = () => {
               loading="eager"
             />
           </div>
-          {/* Floating accent */}
           <div className="absolute -bottom-4 -right-4 h-24 w-24 rounded-full bg-primary/10 blur-2xl animate-pulse-glow" />
           <div className="absolute -top-4 -left-4 h-16 w-16 rounded-full bg-accent/10 blur-2xl animate-pulse-glow" />
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
